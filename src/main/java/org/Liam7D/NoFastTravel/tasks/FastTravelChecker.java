@@ -48,20 +48,6 @@ public class FastTravelChecker extends BukkitRunnable { // runs every second
             
         }
         
-       /*if (!MainPlugin.getRecallManagerMap().isEmpty()){
-           for (int i = 0; i < MainPlugin.getRecallManagerMap().size(); i++){
-               RecallManager recallManager = (RecallManager) MainPlugin.getRecallManagerMap().values().toArray()[i];
-               if (!Utility.isOnNetherRoof(recallManager.getPlayer())){
-                   recallManager.getPlayer().sendMessage(ChatUtil.colorize("&c&lYou have left the Nether roof."));
-                   MainPlugin.getRecallManagerMap().remove(recallManager.getPlayer().getUniqueId());
-                   if (i < MainPlugin.getRecallManagerMap().size()) i--;
-               } else if (recallManager.isFastTraveling()){
-                   recallManager.rollbackLocation();
-                   recallManager.getPlayer().sendMessage(ChatUtil.colorize("&c&lYou have exceeded the 128-block limit on the Nether roof!"));
-               }
-           }
-       }*/
-       
     }
     
 }
