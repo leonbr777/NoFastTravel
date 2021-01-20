@@ -5,18 +5,25 @@ import org.Liam7D.NoFastTravel.utils.Utility;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 public class RecallManager { // Recalls players who are trying to fast-travel on the nether-roof back to their original location
 
     @Getter private final Player player;
+    @Getter private final OfflinePlayer offlinePlayer;
     @Getter private final Location original; // Center point relative to cornerOne and cornerTwo.
     @Getter private final Location cornerOne;
     @Getter private final Location cornerTwo;
     
     public RecallManager(Player player){
+        this(player, player.getLocation().clone());
+    }
+    
+    public RecallManager(Player player, Location original){
         this.player = player;
-        this.original = player.getLocation().clone();
+        this.offlinePlayer = null;
+        this.original = original;
         this.cornerOne = original.clone().subtract(128, 0, 128);
         this.cornerTwo = original.clone().add(128, 0, 128); // the added Y-level reaches build-limit, in the event of a player building to build-limit.
         cornerOne.setY(128);

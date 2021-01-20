@@ -1,6 +1,9 @@
 package org.Liam7D.NoFastTravel;
 
 import lombok.Getter;
+import org.Liam7D.NoFastTravel.listeners.PlayerJoin;
+import org.Liam7D.NoFastTravel.listeners.PlayerQuit;
+import org.Liam7D.NoFastTravel.managers.OfflineRecallManager;
 import org.Liam7D.NoFastTravel.managers.RecallManager;
 import org.Liam7D.NoFastTravel.tasks.FastTravelChecker;
 import org.Liam7D.NoFastTravel.utils.interfaces.IPlugin;
@@ -14,6 +17,7 @@ import java.util.UUID;
 public class MainPlugin extends JavaPlugin implements IPlugin {
     
     @Getter protected static List<RecallManager> recallManagerList;
+    @Getter protected static List<OfflineRecallManager> offlineRecallManagerList;
     @Getter protected static HashMap<UUID, RecallManager> recallManagerMap;
     
     @Override
@@ -30,6 +34,7 @@ public class MainPlugin extends JavaPlugin implements IPlugin {
     @Override
     public void init() {
         recallManagerList = new ArrayList<>();
+        offlineRecallManagerList = new ArrayList<>();
         recallManagerMap = new HashMap<>();
     }
     
@@ -45,7 +50,8 @@ public class MainPlugin extends JavaPlugin implements IPlugin {
     
     @Override
     public void listen() {
-    
+        pm.registerEvents(new PlayerJoin(), this);
+        pm.registerEvents(new PlayerQuit(), this);
     }
     
 }
